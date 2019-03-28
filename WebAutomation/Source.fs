@@ -63,7 +63,7 @@ module Source =
             let salary = "#ddcl-selSalary"
             let salary50to75k = "#ddcl-selSalary-i6"
             let classicView = "#searchtogglelink"
-            // Ensure that the JobServe is entered in quotes, e.g., that the search box receives "machine learning" not machine learning, 
+            // Ensure that the JobServe search is entered in quotes, e.g., that the search box receives "machine learning" not machine learning, 
             // otherwise we'd get results for 'machine learning' as well as 'machine' and 'learning.'
             let quotedSkill = quote + skill + quote
 
@@ -86,8 +86,11 @@ module Source =
 
         quit()
 
-    /// Displays job stats at ITJobsWatch for C# jobs.
-    let itjobswatch = 
+    /// <summary>
+    /// Displays job stats at ITJobsWatch for the specified skill(s).
+    /// </summary>
+    /// <param name="skill">The skill, e.g., "c#", "machine learning."</param>
+    let itjobswatch skill = 
 
         start firefox
         pin direction.FullScreen
@@ -96,9 +99,9 @@ module Source =
 
             url "https://www.itjobswatch.co.uk/"
             click "#ctl00_tabContract"
-            "#search" << "C#"
+            "#search" << skill
             press enter
-            click "C#"
+            click skill
 
         run()
 
